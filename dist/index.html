@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="曾铭新 · Wechat:8574157" />
+    <meta
+      name="description"
+      content="探索人体骨骼、肌肉、血管和内脏，按部位拆分，并通过身体参数调整三维示意模型。"
+    />
+    <title>人体解剖 · Anatomy Studio</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      { "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/" } }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="brand-icon">A<span>＋</span></span>
+        <div>ANATOMY <b>STUDIO</b><small>人体解剖工作台</small></div>
+      </div>
+      <div class="header-center">探索人体，理解每一层结构</div>
+      <span class="edition">3D 分体图谱 <i> / </i> 4.3</span>
+    </header>
+    <main>
+      <aside class="left-panel">
+        <div class="panel-heading">
+          <span class="eyebrow">ANATOMICAL LAYERS</span>
+          <h1>组织与结构</h1>
+          <p>每个模型都有独立名称、编号和开关。</p>
+        </div>
+        <div class="tabs">
+          <button class="active" id="system-tab">按系统</button
+          ><button id="region-tab">按部位</button>
+        </div>
+        <div id="region-controls" hidden>
+          <label for="region">选择身体部位</label
+          ><select id="region">
+            <option value="all">全身</option>
+            <option value="head">头颈部</option>
+            <option value="chest">胸部</option>
+            <option value="abdomen">腹盆部</option>
+            <option value="arms">上肢</option>
+            <option value="legs">下肢</option></select
+          ><button class="outline full" id="region-all">显示该部位的全部结构</button>
+        </div>
+        <div class="list-top">
+          <span>解剖系统 <b id="layer-count">加载中</b></span
+          ><button id="show-all">全部显示</button>
+        </div>
+        <div id="layers"></div>
+        <div class="layer-tip">
+          <span>◈</span>
+          <p>展开系统与部位，逐项选择结构。列表计数为模型组件数，不等同于骨骼或器官总数。</p>
+        </div>
+        <div class="left-bottom">
+          <span class="eyebrow">VIEW SETTINGS</span
+          ><label class="range-label" for="explode"
+            >结构分离 <output id="explode-value">0%</output></label
+          ><input type="range" id="explode" min="0" max="100" value="0" /><label class="checkline"
+            ><input type="checkbox" id="labels" checked /> 显示结构标注</label
+          ><button id="reset-layers" class="outline full">重置显示设置</button>
+        </div>
+      </aside>
+      <section class="viewport" aria-label="交互式三维人体模型">
+        <div class="view-top">
+          <div>
+            <div class="eyebrow">HUMAN ANATOMY</div>
+            <h2>人体结构探索</h2>
+            <span id="body-summary">男性 · 175 cm · 70 kg · 30 岁</span>
+          </div>
+          <span class="model-status"><span></span> 实时 3D</span>
+        </div>
+        <div id="scene"><div id="loading">正在读取分体模型清单…</div></div>
+        <div id="annotations"></div>
+        <div class="height-scale"><span id="height-label">175 cm</span><i></i><small>0</small></div>
+        <div class="orientation">
+          <button data-view="front" class="active">前</button><button data-view="back">后</button
+          ><button data-view="side">侧</button>
+        </div>
+        <div class="view-bottom">
+          <div class="view-modes">
+            <button id="cutaway" class="active">半身剖视</button
+            ><button id="complete">完整模型</button>
+          </div>
+          <div class="tools">
+            <button id="rotate" title="自动旋转" aria-label="自动旋转">↻</button
+            ><button id="zoom-in" title="放大" aria-label="放大">＋</button
+            ><button id="zoom-out" title="缩小" aria-label="缩小">−</button
+            ><button id="reset-view" title="重置视角" aria-label="重置视角">⌖</button>
+          </div>
+        </div>
+        <div class="canvas-help">
+          <span>拖动旋转</span><i>·</i><span>滚轮缩放</span><i>·</i><span>点击选取结构</span>
+        </div>
+      </section>
+      <aside class="right-panel">
+        <div class="panel-heading">
+          <span class="eyebrow">BODY PARAMETERS</span>
+          <h2>身体参数</h2>
+          <p>基于成人参考模型的比例模拟。</p>
+        </div>
+        <fieldset>
+          <legend>生理性别</legend>
+          <div class="sex-control">
+            <button class="active" data-sex="male">♂ 男性</button
+            ><button data-sex="female">♀ 女性比例</button>
+          </div>
+        </fieldset>
+        <div id="parameters"></div>
+        <div class="metric">
+          <span>身体质量指数 <small>BMI</small></span
+          ><strong id="bmi">22.9</strong>
+        </div>
+        <div class="parameter-note">
+          身高、体重和年龄用于体型与姿态模拟，不是个体解剖重建。<span id="female-note" hidden
+            >当前解剖数据来自男性参考人体。女性选项仅模拟肩胯比例，不包含女性特有器官。</span
+          >
+        </div>
+        <button class="text-button" id="reset-body">↺ 恢复默认参数</button>
+        <div class="detail-card">
+          <div class="eyebrow">STRUCTURE INSPECTOR</div>
+          <div class="detail-title">
+            <span id="detail-dot"></span>
+            <h3 id="detail-name">探索每一层</h3>
+          </div>
+          <p id="detail-en">SELECT A STRUCTURE</p>
+          <p id="detail-text">点击模型或列表中的具体条目，查看编号、网格和全部所属组合。</p>
+          <div id="detail-meta"></div>
+          <button id="isolate" class="outline full" hidden>只显示这个结构</button
+          ><button id="unfocus" class="text-button full" hidden>返回整体视图</button>
+        </div>
+        <div class="source-note">
+          <span id="dataset-name">BodyParts3D 4.3</span> · <span id="loaded-count">0 / 3210</span
+          ><br />© DBCLS · <a href="./credits.html" target="_blank">数据来源与覆盖范围 ↗</a
+          ><br /><a href="./atlas/structure-inventory.csv" download>下载全部结构清单 ↓</a
+          ><br /><span class="project-author">作者：曾铭新 · Wechat:8574157</span><br /><button
+            id="retry-load"
+            class="text-button"
+            hidden
+          >
+            重试载入
+          </button>
+        </div>
+      </aside>
+    </main>
+    <footer>
+      <span><b class="footer-cross">＋</b> 解剖学，从整体到局部</span
+      ><span id="mesh-status">正在准备模型</span><span>滚动与触控均可操作</span>
+    </footer>
+    <script type="module" src="./atlas-app.js"></script>
+  </body>
+</html>

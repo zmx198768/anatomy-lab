@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  /><title>数据来源与覆盖范围 · Anatomy Studio</title
+  ><style>
+    body {
+      max-width: 820px;
+      padding: 35px 24px;
+      margin: auto;
+      background: #151c23;
+      color: #d4e1e8;
+      font: 16px/1.9 system-ui;
+    }
+    h1 {
+      font-size: 28px;
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 32px;
+    }
+    a {
+      color: #a4e9d1;
+    }
+    code {
+      color: #b8e2ee;
+    }
+    li {
+      margin-bottom: 12px;
+    }
+    .note {
+      padding: 18px;
+      background: #26342f;
+      border-left: 3px solid #90ceb7;
+    }</style
+  ><a href="./">← 返回解剖工作台</a>
+  <h1>数据来源与覆盖范围</h1>
+  <p>
+    本页展示 BodyParts3D 4.3 官方组成清单内的 <strong>3,210 个独立网格组件</strong>。每个 FJ
+    编号都对应一个实际模型，可独立显示、隐藏、定位和选择。转换保留全部 8,647,172 个原始三角面。
+  </p>
+  <p class="note">
+    “清单完整”指该版本收录的所有模型均已导入，不表示已覆盖人体每一条微小血管、毛细血管、所有变异或显微组织。多个网格可能属于同一个解剖实体，因此模型数不能当作骨骼、血管或器官的实体总数。
+  </p>
+  <h2>项目作者</h2>
+  <p>
+    作者与维护者：曾铭新（<a href="https://github.com/zmx198768" target="_blank" rel="noopener"
+      >zmx198768</a
+    >）。<strong>Wechat:8574157</strong>。<a
+      href="https://github.com/zmx198768/anatomy-lab"
+      target="_blank"
+      rel="noopener"
+      >GitHub 项目仓库</a
+    >。
+  </p>
+  <p>项目作者署名指应用与数据处理工作，不替代下列原始数据和软件作者的署名。</p>
+  <h2>模型来源与许可</h2>
+  <p>
+    <a href="https://lifesciencedb.jp/bp3d/" target="_blank" rel="noopener"
+      >BodyParts3D / Anatomography</a
+    >，© The Database Center for Life Science (DBCLS)。模型从官方服务取得，并对照官方 4.3 的
+    FMA2Obj 清单核验。<a
+      href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html"
+      target="_blank"
+      rel="noopener"
+      >官方存档许可页</a
+    >于 2025-02-27 更新为
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener"
+      >CC Attribution 4.0 International</a
+    >。署名：BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0
+    International。
+  </p>
+  <p>
+    三维文件调整了坐标轴、单位及显示材质，采用分块压缩与 16
+    位位置量化；未删减网格或三角面。量化位置的单轴最大误差约 0.014 mm。原始 OBJ
+    可通过仓库中的下载脚本获取，保存于本地 source-data/objs；Git 仓库不包含原始 OBJ 下载缓存。
+  </p>
+  <p>
+    下载流程参考
+    <a href="https://github.com/olivercase/body_parts_3d_api" target="_blank" rel="noopener"
+      >olivercase/body_parts_3d_api</a
+    >。中文检索名称参考
+    <a href="https://github.com/jixiangying/anatomy" target="_blank" rel="noopener"
+      >jixiangying/anatomy</a
+    >
+    中与官方英文名完全匹配的术语。尚未匹配中文的结构保留官方英文名称，不以猜测名称代替。
+  </p>
+  <h2>组成关系与身体区域</h2>
+  <p>
+    “官方组合结构”来自官方 FMA2Obj 的 is-a / part-of
+    组成映射；可展示组合中已收录的全部独立组件。身体区域筛选结合空间位置和官方映射，跨区结构可出现在多个部位。系统归类为界面检索分类，并非新的医学本体。
+  </p>
+  <h2>身体参数的限制</h2>
+  <p>
+    基础数据为成人男性参考模型。身高、体重、年龄和女性比例选项仅改变外形比例与姿态，不能推断真实个体解剖，不模拟器官病理、血管变异或儿童发育。女性比例不提供女性特有器官。原始模型的解剖关系可通过恢复默认参数查看。
+  </p>
+  <h2>核验清单</h2>
+  <ul>
+    <li><a href="./atlas/structure-inventory.csv" download>下载全部独立组件清单（CSV）</a></li>
+    <li><a href="./atlas/coverage.json">查看覆盖与转换核验结果</a></li>
+    <li><a href="./atlas/manifest.json">查看模型索引及组成关系</a></li>
+  </ul>
+  <p>
+    渲染使用 Three.js 0.170.0，<a href="./vendor/LICENSE-three.txt">MIT 许可证</a
+    >。此交互图谱用于解剖学习和结构探索，非临床测量工具。
+  </p>
+</html>

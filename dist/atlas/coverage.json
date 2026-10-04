@@ -1,0 +1,25 @@
+{
+  "expected": 3210,
+  "actual": 3210,
+  "missing": [],
+  "trianglesPreserved": 8647172,
+  "maxQuantizationErrorMM": 0.013118724221994778,
+  "systems": {
+    "bone": 378,
+    "muscle": 436,
+    "artery": 862,
+    "vein": 611,
+    "nerve": 439,
+    "connective": 67,
+    "heart": 56,
+    "respiratory": 226,
+    "digestive": 86,
+    "urinary": 6,
+    "reproductive": 12,
+    "endocrine": 18,
+    "lymph": 3,
+    "skin": 10
+  },
+  "archiveMB": 62.891117,
+  "untranslated": 1136
+}

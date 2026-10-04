@@ -97,4 +97,3 @@ Python 数据工具的格式配置见 `pyproject.toml`。重新生成数据的�
 BodyParts3D 模型的原作者为 **The Database Center for Life Science（DBCLS）**，按其官方 **CC BY 4.0** 条款使用；Three.js 按 **MIT** 许可使用。项目作者署名不替代第三方数据与库的原始署名。详见 [第三方说明](THIRD_PARTY_NOTICES.md)。
 
 本仓库尚未为项目自有代码另行授予开源许可；代码使用授权请联系作者。第三方资源继续适用各自的许可。
-

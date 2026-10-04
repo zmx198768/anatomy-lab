@@ -1,0 +1,31 @@
+{
+  "name": "anatomy-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Interactive BodyParts3D anatomy explorer with 3210 individual mesh components",
+  "author": {
+    "name": "曾铭新",
+    "url": "https://github.com/zmx198768"
+  },
+  "contact": {
+    "wechat": "8574157"
+  },
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zmx198768/anatomy-lab.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "python -m http.server 8080 --bind 127.0.0.1 --directory dist",
+    "test": "node verify-atlas.mjs && node --max-old-space-size=2048 verify-loader.mjs",
+    "format": "prettier --write dist/*.js dist/*.html dist/*.css *.mjs *.json *.md docs/*.md",
+    "format:check": "prettier --check dist/*.js dist/*.html dist/*.css *.mjs *.json *.md docs/*.md"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}
